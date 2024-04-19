@@ -3,9 +3,16 @@
 version = 3
 
 [[package]]
+name = "base64"
+version = "0.22.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9475866fec1451be56a3c2400fd081ff546538961565ccb5b7142cbd22bc7a51"
+
+[[package]]
 name = "bbc-parser"
 version = "0.1.0"
 dependencies = [
+ "base64",
  "pest",
  "pest_derive",
 ]

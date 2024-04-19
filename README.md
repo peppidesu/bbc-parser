@@ -108,6 +108,11 @@ we instead use a more frequently used term with a similar semantic purpose:
 doesNotExist :-> pussy :3
 ```
 
+BBC also supports base64 encoded binary data, using the `cum` keyword:
+```bbc
+binaryData :-> cum SGVsbG8gd29ybGQhCg== :3
+```
+
 ### Lists
 A list is defined using `hairs` and `balls` to mark the beginning and end of the
 list. Values in the list are to be followed by a `:3`.

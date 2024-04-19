@@ -3,6 +3,7 @@ use core::panic;
 use pest_derive::Parser;
 use pest::{error::Error, Parser};
 use std::fs;
+use base64::prelude::*;
 
 #[derive(Parser)]
 #[grammar = "bbc.pest"]
@@ -14,6 +15,7 @@ enum BBCValue<'a> {
     String(&'a str),
     Number(f64),
     Boolean(bool),
+    Bytes(Vec<u8>),
     Null,
 }
 
@@ -49,6 +51,13 @@ fn parse_bbc_file(file: &str) -> Result<BBCValue, Error<Rule>> {
                     _ => panic!("Unexpected boolean value: {}", inner),
                 }
             }
+            Rule::bytes => {
+                let decoded_bytes = BASE64_STANDARD
+                    .decode(pair.into_inner().next().unwrap().as_str())
+                    .unwrap()
+                    .to_vec();
+                BBCValue::Bytes(decoded_bytes)
+            },
             Rule::null => BBCValue::Null,
             Rule::bbc
             | Rule::EOI
@@ -57,6 +66,7 @@ fn parse_bbc_file(file: &str) -> Result<BBCValue, Error<Rule>> {
             | Rule::inner
             | Rule::char
             | Rule::key
+            | Rule::bytesInner
             | Rule::COMMENT
             | Rule::WHITESPACE => unreachable!(),
         }
@@ -94,6 +104,7 @@ fn serialize_bbc_value(val: &BBCValue) -> String {
         String(s) => format!("\"{}\"", s),
         Number(n) => format!("{}", n),
         Boolean(b) => format!("{}", if *b { "hard" } else { "soft" } ),
+        Bytes(b) => format!("cum {}", BASE64_STANDARD.encode(b)),
         Null => format!("pussy"),
     }
 }

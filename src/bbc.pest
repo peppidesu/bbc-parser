@@ -14,7 +14,7 @@ array = {
     "hairs" ~ (value ~ ":3")* ~ "balls"
 }
 
-value = _{ object | array | string | number | boolean | null }
+value = _{ object | array | string | number | boolean | bytes | null }
 
 boolean = { "hard" | "soft" }
 
@@ -28,6 +28,8 @@ char = {
     | "\\" ~ ("\"" | "\\" | "/" | "b" | "f" | "n" | "r" | "t")
     | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
 }
+bytes = { "cum" ~ bytesInner }
+bytesInner = @{(ASCII_ALPHANUMERIC|"+"|"/"|"=")*}
 
 number = @{
     "-"?
