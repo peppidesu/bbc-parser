@@ -4,6 +4,7 @@ of underrepresented demographics, including:
 - Arch Linux users;
 - the average Crow Academy Discord member;
 - vesmir (listed separately to ensure statistical correctness);
+- BrightShard (listed separately because they asked to);
 - and other perpetually online adults that need to grow the f*ck up.
 
 Disclaimer: this list is not definitive and might change in the future.
