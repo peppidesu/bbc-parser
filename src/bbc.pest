@@ -1,16 +1,17 @@
 WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
 
-COMMENT = _{ "8==" ~ ANY* ~ "==D" }
+COMMENT = _{ "8==" ~ (!"==D" ~ ANY)* ~ "==D" }
 
 object = {
-    "cock" ~ "balls" |
-    "cock" ~ pair ~ (":3" ~ pair)* ~ "balls"
+    "micropenis" |
+    "cock" ~ (pair ~ ":3")* ~ "balls"
 }
-pair = { key ~ ":->" ~ value }
+
+pair = { key ~ ":" ~ "-"+ ~ ">" ~ value }
 
 array = {
-    "hairs(" ~ ")" |
-    "hairs(" ~ value ~ (":3" ~ value)* ~ ")"
+    "shaved" |
+    "hairs" ~ (value ~ ":3")* ~ "balls"
 }
 
 value = _{ object | array | string | number | boolean | null }
@@ -19,7 +20,7 @@ boolean = { "hard" | "soft" }
 
 null = { "pussy" }
 
-key = ${ ASCII_ALPHA ~ ASCII_ALPHANUMERIC* }
+key = ${ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
 string = ${ "\"" ~ inner ~ "\"" }
 inner = @{ char* }
 char = {

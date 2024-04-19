@@ -27,8 +27,7 @@ fn parse_bbc_file(file: &str) -> Result<BBCValue, Error<Rule>> {
             Rule::object => BBCValue::Object(
                 pair.into_inner()
                     .map(|pair| {
-                        let mut inner_rules = pair.into_inner();
-                        println!("{:?}", inner_rules);
+                        let mut inner_rules = pair.into_inner();                        
                         
                         let name = inner_rules
                             .next()
@@ -75,13 +74,22 @@ fn serialize_bbc_value(val: &BBCValue) -> String {
             let contents: Vec<_> = o
                 .iter()
                 .map(|(name, value)|
-                     format!("{}:->{}", name, serialize_bbc_value(value)))
+                     format!("{} :-> {}", name, serialize_bbc_value(value)))
                 .collect();
-            format!("cock {} balls", contents.join(":3"))
+            if contents.len() > 0 {
+                format!("cock {} :3 balls", contents.join(" :3 "))
+            } else {
+                "micropenis".to_string()
+            }
         }
         Array(a) => {
             let contents: Vec<_> = a.iter().map(serialize_bbc_value).collect();
-            format!("hairs({})", contents.join(":3"))
+            if contents.len() > 0 {
+                format!("hairs {} :3 balls", contents.join(" :3 "))
+            }
+            else {
+                "shaved".to_owned()
+            }
         }
         String(s) => format!("\"{}\"", s),
         Number(n) => format!("{}", n),
@@ -93,7 +101,7 @@ fn serialize_bbc_value(val: &BBCValue) -> String {
 
 
 fn main() {
-    let unparsed_file = fs::read_to_string("data2.bbc").expect("cannot read file");
+    let unparsed_file = fs::read_to_string("data.bbc").expect("cannot read file");
 
     let bbc: BBCValue = parse_bbc_file(&unparsed_file).expect("unsuccessful parse");
 

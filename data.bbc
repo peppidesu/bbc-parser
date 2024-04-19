@@ -1,7 +1,34 @@
+8== This is a comment ==D
+8==
+This is a multi-line comment
+==D
+
+8== hashmaps are defined using the `cock` and `balls` keywords ==D
 cock
-    nesting :-> cock inner :-> cock balls balls :3
-    array :-> hairs(1.5 :3 soft :3 pussy :3 1e-6) :3
-    string :-> "\"quick brown foxes\"" :3
+    8== 
+    key-value pairs are defined as `key :-> <value> :3`.
+    you can make the `:->` as long as you like!
+    ==D
+    nesting :----> cock 
+        8==
+        empty hashmaps are beta and cringe, so they are aliased to `micropenis`.
+        ==D
+        inner :------> micropenis :3 
+    balls :3
+    8==
+    lists are defined using `hairs` and `balls`, and empty lists are aliased
+    to `shaved`.
+    ==D
+    array :-> hairs
+        1.5 :3 
+        soft :3 
+        pussy :3 
+        1e-6 :3
+    balls :3
+    string :-> "\"femboys mmfghhghh\"" :3
     foo :-> hard :3
-    bar :-> pussy
+    8==
+    the null literal in BBC is `pussy`, since it doesn't exist after all!
+    ==D
+    bar :-> pussy :3
 balls
